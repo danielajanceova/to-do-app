@@ -1,0 +1,140 @@
+/* CSS pre profesionálny tmavší vzhľad */
+
+/* Definovanie CSS premenných pre jednotný štýl */
+:root {
+  --body-bg-color: #1c1c1e;           /* Hlavné pozadie - tmavošedé */
+  --container-bg-color: #2c2c2e;      /* Pozadie kontajnera - tmavšia šedá */
+  --font-color: #e5e5e5;              /* Svetlosivý text */
+  --button-bg-color: #3a3a3c;         /* Pozadie tlačidla - neutrálna šedá */
+  --button-bg-color-hover: #48484a;   /* Hover efekt tlačidla */
+  --input-bg-color: #3a3a3c;          /* Pozadie vstupných polí */
+  --border-color: #5e5e5e;            /* Border farba */
+  --highlight-color: #007aff;         /* Modrá na zvýraznenie akcie */
+  --transition-speed: 0.3s;           /* Rýchlosť prechodov */
+  --border-radius: 8px;               /* Zaoblenie rohov */
+  --font-family: 'Arial', sans-serif; /* Typ písma */
+}
+
+/* Štýly pre celé telo */
+body {
+  background-color: var(--body-bg-color);
+  color: var(--font-color);
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Hlavný kontajner */
+.container {
+  background-color: var(--container-bg-color);
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Nadpis */
+h1 {
+  color: var(--font-color);
+  font-size: 1.8em;
+  text-align: center;
+}
+
+/* Štýly pre vstupné pole a tlačidlo */
+input[type="text"] {
+  background-color: var(--input-bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--font-color);
+  padding: 12px;
+  width: calc(100% - 24px);
+  border-radius: var(--border-radius);
+  margin-bottom: 10px;
+  transition: border-color var(--transition-speed);
+}
+
+input[type="text"]:focus {
+  border-color: var(--highlight-color);
+  outline: none;
+}
+
+/* Tlačidlo "Add" */
+button {
+  background-color: var(--button-bg-color);
+  color: var(--font-color);
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color var(--transition-speed);
+}
+
+button:hover {
+  background-color: var(--button-bg-color-hover);
+}
+
+/* Štýly pre zoznam úloh */
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  background-color: var(--input-bg-color);
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color var(--transition-speed);
+}
+
+.todo-item:hover {
+  background-color: var(--button-bg-color-hover);
+}
+
+/* Štýly pre tlačidlo "Delete" */
+button.delete {
+  background-color: transparent;
+  color: #ff3b30; /* Červená pre tlačidlo "Delete" */
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-speed);
+}
+
+button.delete:hover {
+  color: #ff453a; /* Svetlejšia červená na hover */
+}
+
+/* Výber priority */
+select {
+  background-color: var(--input-bg-color);
+  color: var(--font-color);
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  border-radius: var(--border-radius);
+  margin-right: 10px;
+  transition: border-color var(--transition-speed);
+}
+
+select:focus {
+  border-color: var(--highlight-color);
+  outline: none;
+}
+
+/* Tmavý režim špecifický pre tmavé prostredie */
+.dark-mode {
+  --body-bg-color: #121212;
+  --container-bg-color: #1c1c1e;
+  --input-bg-color: #2c2c2e;
+  --button-bg-color: #3a3a3c;
+  --button-bg-color-hover: #48484a;
+  --border-color: #3a3a3c;
+}
