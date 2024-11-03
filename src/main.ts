@@ -18,6 +18,10 @@ const todoForm = document.querySelector('.todo-form') as HTMLFormElement;
 const todoList = document.getElementById('todo-list') as HTMLUListElement;
 const errorMessage = document.getElementById('error-message') as HTMLParagraphElement; // for user input validation
 
+// Get references to the new buttons for additional functionality
+const clearCompletedBtn = document.getElementById('clear-completed-btn') as HTMLButtonElement;
+const toggleAllBtn = document.getElementById('toggle-all-btn') as HTMLButtonElement;
+
 // Step 1: Modify the renderTodos function to add a dropdown to set priority and display priority
 const renderTodos = (): void => {
   todoList.innerHTML = '';  // Clear the current list
@@ -32,27 +36,27 @@ const renderTodos = (): void => {
     const li = document.createElement('li');
     li.className = 'todo-item';
 
-   // Apply line-through style if the todo is completed
-li.innerHTML = `
-<div class="todo-item-content">
-  <input type="checkbox" class="toggle-checkbox" ${todo.completed ? 'checked' : ''}>
-  <span class="todo-text" style="text-decoration: ${todo.completed ? 'line-through' : 'none'};">
-    ${todo.text}
-  </span>
-  <div class="priority-container">
-    <select class="priority-dropdown">
-      <option value="Low" ${todo.priority === 'Low' ? 'selected' : ''}>Low</option>
-      <option value="Medium" ${todo.priority === 'Medium' ? 'selected' : ''}>Medium</option>
-      <option value="High" ${todo.priority === 'High' ? 'selected' : ''}>High</option>
-    </select>
-    <span class="priority-label">${todo.priority}</span>
-  </div>
-</div>
-<div class="todo-item-actions">
-  <button class="remove-btn">Remove</button>
-  <button class="edit-btn">Edit</button>
-</div>
-`;
+    // Apply line-through style if the todo is completed
+    li.innerHTML = `
+      <div class="todo-item-content">
+        <input type="checkbox" class="toggle-checkbox" ${todo.completed ? 'checked' : ''}>
+        <span class="todo-text" style="text-decoration: ${todo.completed ? 'line-through' : 'none'};">
+          ${todo.text}
+        </span>
+        <div class="priority-container">
+          <select class="priority-dropdown">
+            <option value="Low" ${todo.priority === 'Low' ? 'selected' : ''}>Low</option>
+            <option value="Medium" ${todo.priority === 'Medium' ? 'selected' : ''}>Medium</option>
+            <option value="High" ${todo.priority === 'High' ? 'selected' : ''}>High</option>
+          </select>
+          <span class="priority-label">${todo.priority}</span>
+        </div>
+      </div>
+      <div class="todo-item-actions">
+        <button class="remove-btn">Remove</button>
+        <button class="edit-btn">Edit</button>
+      </div>
+    `;
 
     // Add event listeners
     addCheckboxListener(li, todo.id);     // Add listener for checkbox toggle
@@ -152,6 +156,25 @@ const addEditButtonListener = (li: HTMLLIElement, id: number): void => {
   editButton?.addEventListener('click', () => editTodo(id));
 };
 
+// Step 11: Function to clear all completed todos
+const clearCompletedTodos = (): void => {
+  todos = todos.filter(todo => !todo.completed);
+  renderTodos(); // Re-render the updated list of todos
+};
+
+// Step 12: Add event listener for the "Clear Completed" button
+clearCompletedBtn.addEventListener('click', clearCompletedTodos);
+
+// Step 13: Function to toggle all todos' completion status
+const toggleAllTodos = (): void => {
+  const allCompleted = todos.every(todo => todo.completed);
+  todos.forEach(todo => todo.completed = !allCompleted); // Toggle all to the opposite state
+  renderTodos(); // Re-render the updated list of todos
+};
+
+// Step 14: Add event listener for the "Toggle All" button
+toggleAllBtn.addEventListener('click', toggleAllTodos);
+
 // Initial rendering of todos
 renderTodos();
 
@@ -172,9 +195,3 @@ const initializeColorPicker = (): void => {
 document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
 });
-
-
-
-
-
-
