@@ -39,4 +39,16 @@ jobs:
 
       - name: Run tests
         run: testcafe chromium:headless test/todo-app.js
-          
+  deployment:
+    needs: integration-delivery
+    runs-on: ubuntu-latest
+    environment: Live 
+    steps:
+      - name: FTP delivery
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ vars.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: live/todo/ # live.danielajanceova.com/todo/
+          local-dir: dist/
