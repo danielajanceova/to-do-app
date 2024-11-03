@@ -14,14 +14,17 @@ test("Adding a ToDo item", async t => {
 
 
 
-// Test for removing a ToDo item
-test("Removing a ToDo item", async t => {
+// Test for updating priority
+test("Updating a ToDo priority", async t => {
     await t
-        .typeText(Selector("#todo-input"), "Buy groceries")
-        .click(Selector(".todo-form button[type='submit']"))
-        .expect(Selector("#todo-list").childElementCount).eql(1) // Expect 1 item to be added
-        .click(Selector("#todo-list .todo-item").withText("Buy groceries").find(".delete")) // Assuming there's a delete button
-        .expect(Selector("#todo-list").childElementCount).eql(0); // Expect 0 items after deletion
-});
+        .typeText(Selector("#todo-input"), "Priority task")
+        .click(Selector(".todo-form button[type='submit']"));
 
+    const priorityDropdown = Selector("#todo-list .todo-item .priority-dropdown");
+
+    await t
+        .click(priorityDropdown)
+        .click(priorityDropdown.find("option").withText("High")) // Select "High" priority
+        .expect(priorityDropdown.value).eql("High"); // Verify the priority is set to "High"
+});
 
