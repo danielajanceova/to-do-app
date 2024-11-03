@@ -27,3 +27,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: test/todo/ # test.danielajanceova.com/todo/
           local-dir: dist/
+          
