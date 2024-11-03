@@ -9,7 +9,7 @@ jobs:
   integration-delivery:
     runs-on: ubuntu-latest
     environment: Test
-    container:
+    container: 
       image: node
     steps:
       - name: Checkout code

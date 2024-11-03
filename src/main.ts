@@ -173,35 +173,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
 });
 
-// Function to update the progress bar
-const updateProgressBar = (): void => {
-  const completedCount = todos.filter(todo => todo.completed).length; // Count completed todos
-  const totalCount = todos.length; // Total todos
 
-  // Calculate the completion percentage
-  const percentage = totalCount === 0 ? 0 : (completedCount / totalCount) * 100; 
-  const progressBar = document.getElementById('progress-bar') as HTMLDivElement;
-
-  // Update the progress bar's width and display percentage
-  progressBar.style.width = `${percentage}%`;
-};
-
-// Call this function whenever todos are added or updated
-const updateTodoCompletion = (id: number, isCompleted: boolean): void => {
-  const todo = todos.find(todo => todo.id === id);
-  if (todo) {
-      todo.completed = isCompleted; // Update completion status
-      updateProgressBar(); // Update the progress bar
-      renderTodos(); // Re-render the updated list of todos
-  }
-};
-// Function to toggle dark mode
-const toggleDarkMode = (): void => {
-  document.body.classList.toggle('dark-mode'); // Toggle the dark mode class
-};
-
-// Add event listener for the dark mode toggle button
-const addDarkModeToggleListener = (): void => {
-  const darkModeToggleButton = document.getElementById('dark-mode-toggle') as HTMLButtonElement;
-  darkModeToggleButton.addEventListener('click', toggleDarkMode);
-}
