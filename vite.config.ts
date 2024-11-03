@@ -1,5 +1,5 @@
 //IMPORTANT FILE WHEN DEPLOYING TO A SUBDIRECTORY
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite'
 
 export default defineConfig ({
     base: '/todo/',
