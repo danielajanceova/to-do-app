@@ -173,18 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
 });
 
-// Function to clear all completed todos
-function clearCompleted() {
-  todos = todos.filter(todo => !todo.completed);
-  renderTodos();
-}
-
-// Function to toggle all todos
-function toggleAll() {
-  const allCompleted = todos.every(todo => todo.completed);
-  todos.forEach(todo => todo.completed = !allCompleted);
-  renderTodos();
-}
 
 
 
