@@ -152,5 +152,5 @@ select:focus {
 #progress-bar {
   width: 400px; /* Celková šírka progress baru */
   height: 20px; /* Výška progress baru */
-  background-color: #4caf50; /* Farba pozadia */
+  background-color: lightgray; /* Farba pozadia */
 }

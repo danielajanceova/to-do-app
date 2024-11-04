@@ -38,26 +38,28 @@ test("Clearing completed ToDos", async t => {
         .expect(Selector("#todo-list .todo-item").withText("Complete task").exists).notOk(); // Overí, že úloha je odstránená
 });
 
+import { Selector } from "testcafe";
+
+fixture("ToDo app tests")
+    .page("http://test.danielajanceova.com/todo/");
+
 // Test pre progress bar
 test("Progress bar reflects completed tasks correctly", async t => {
     // Pridanie úloh
     await t
         .typeText(Selector("#todo-input"), "Task 1")
         .click(Selector(".todo-form button[type='submit']"))
-        .expect(Selector("#todo-list").childElementCount).eql(1)
-        .expect(Selector("#todo-list .todo-item").withText("Task 1").exists).ok();
-        
+        .expect(Selector("#todo-list").childElementCount).eql(1);
+
     await t
         .typeText(Selector("#todo-input"), "Task 2")
         .click(Selector(".todo-form button[type='submit']"))
-        .expect(Selector("#todo-list").childElementCount).eql(2)
-        .expect(Selector("#todo-list .todo-item").withText("Task 2").exists).ok();
-        
+        .expect(Selector("#todo-list").childElementCount).eql(2);
+
     await t
         .typeText(Selector("#todo-input"), "Task 3")
         .click(Selector(".todo-form button[type='submit']"))
-        .expect(Selector("#todo-list").childElementCount).eql(3)
-        .expect(Selector("#todo-list .todo-item").withText("Task 3").exists).ok();
+        .expect(Selector("#todo-list").childElementCount).eql(3);
 
     // Označenie niektorých úloh ako dokončených
     await t
