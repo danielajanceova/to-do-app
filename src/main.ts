@@ -154,12 +154,9 @@ const editTodo = (id: number): void => {
 const addEditButtonListener = (li: HTMLLIElement, id: number): void => {
   const editButton = li.querySelector('.edit-btn') as HTMLButtonElement;
   editButton?.addEventListener('click', () => editTodo(id));
-   
 };
 
 
-// Initial rendering of todos
-renderTodos();
 
 // Color picker functionality for background color change
 const initializeColorPicker = (): void => {
