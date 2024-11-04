@@ -60,8 +60,8 @@ const renderTodos = (): void => {
 
     todoList.appendChild(li);
   });
-   // Update the progress bar after rendering todos
-   
+
+ 
 };
 
 // Step 2: Add event listener for the checkbox to toggle completion status
@@ -170,6 +170,14 @@ const initializeColorPicker = (): void => {
 // Initialize color picker on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
-
+  document.getElementById("clearCompleted")?.addEventListener("click", clearCompletedTodos);
 });
+
+// Step to clear completed todos
+const clearCompletedTodos = (): void => {
+  todos = todos.filter(todo => !todo.completed);
+  renderTodos();
+
+  
+};
 
