@@ -139,3 +139,33 @@ select:focus {
   --border-color: #3a3a3c;
 }
 
+
+.progress-container {
+  width: 100%;
+  background-color: #f3f3f3;
+  height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 20px;
+  position: relative; /* Needed for centering text */
+}
+
+#progress-bar {
+  height: 100%; /* Ensure it covers the full container height */
+  background-color: rgb(181, 218, 174); /* Progress bar background color */
+  text-align: center; /* Center text horizontally */
+  position: relative; /* Needed for centering text */
+}
+
+#progress-text {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  color: black; /* Adjust color based on progress bar's background color */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  font-weight: bold;
+}

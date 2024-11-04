@@ -59,9 +59,9 @@ const renderTodos = (): void => {
     addEditButtonListener(li, todo.id);
 
     todoList.appendChild(li);
-  });
 
- 
+  updateProgressBar(); // Update progress bar after clearing completed todos
+
 };
 
 // Step 2: Add event listener for the checkbox to toggle completion status
@@ -76,6 +76,9 @@ const toggleTodoCompletion = (id: number, isCompleted: boolean): void => {
   if (todo) {
     todo.completed = isCompleted;
     renderTodos();
+
+    updateProgressBar(); // Update progress bar after clearing completed todos
+
   
   }
   
@@ -174,3 +177,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Step to clear completed todos
+const clearCompletedTodos = (): void => {
+  todos = todos.filter(todo => !todo.completed);
+  renderTodos();
+  updateProgressBar(); // Update progress bar after clearing completed todos
+
+  
+};
+
+// Step : Function to update the progress bar
+const updateProgressBar = (): void => {
+  const completedTodos = todos.filter(todo => todo.completed).length;
+  const totalTodos = todos.length;
+  const progressPercentage = totalTodos ? (completedTodos / totalTodos) * 100 : 0;
+
+  const progressBar = document.getElementById("progress-bar") as HTMLElement;
+  const progressText = document.getElementById("progress-text") as HTMLElement;
+  
+  if (progressBar && progressText) {
+    progressBar.style.width = `${progressPercentage}%`;
+    progressText.textContent = `${Math.round(progressPercentage)}%`; // Display rounded percentage
+  }
+};
