@@ -61,7 +61,7 @@ const renderTodos = (): void => {
     todoList.appendChild(li);
   });
    // Update the progress bar after rendering todos
-   updateProgressBar();  
+   
 };
 
 // Step 2: Add event listener for the checkbox to toggle completion status
@@ -76,7 +76,7 @@ const toggleTodoCompletion = (id: number, isCompleted: boolean): void => {
   if (todo) {
     todo.completed = isCompleted;
     renderTodos();
-    updateProgressBar(); // Update progress bar after toggling completio
+  
   }
   
 };
@@ -170,24 +170,5 @@ const initializeColorPicker = (): void => {
 // Initialize color picker on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
-  document.getElementById("clearCompleted")?.addEventListener("click", clearCompletedTodos);
+ 
 });
-
-// Step to clear completed todos
-const clearCompletedTodos = (): void => {
-  todos = todos.filter(todo => !todo.completed);
-  renderTodos();
-  updateProgressBar(); // Update progress bar after clearing completed todos
-};
-
-// Step : Function to update the progress bar
-const updateProgressBar = (): void => {
-  const completedTodos = todos.filter(todo => todo.completed).length;
-  const totalTodos = todos.length;
-  const progressPercentage = totalTodos ? (completedTodos / totalTodos) * 100 : 0;
-
-  const progressBar = document.getElementById("progress-bar") as HTMLElement;
-  if (progressBar) {
-      progressBar.style.width = `${progressPercentage}%`;
-  }
-};
