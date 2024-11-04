@@ -31,3 +31,12 @@ test("Updating a ToDo priority", async t => {
 
 
 
+// Test pre tlačidlo Clear Completed
+test("Clearing completed ToDos", async t => {
+    await t
+        .typeText(Selector("#todo-input"), "Complete task")
+        .click(Selector(".todo-form button[type='submit']"))
+        .click(Selector("#todo-list .todo-item .toggle-checkbox")) // Označí úlohu ako dokončenú
+        .click(Selector("#clearCompleted")) // Klikne na Clear Completed
+        .expect(Selector("#todo-list .todo-item").withText("Complete task").exists).notOk(); // Overí, že úloha je odstránená
+});
