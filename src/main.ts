@@ -190,8 +190,10 @@ const updateProgressBar = (): void => {
   const progressPercentage = totalTodos ? (completedTodos / totalTodos) * 100 : 0;
 
   const progressBar = document.getElementById("progress-bar") as HTMLElement;
-  if (progressBar) {
-      progressBar.style.width = `${progressPercentage}%`;
+  const progressText = document.getElementById("progress-text") as HTMLElement;
+  
+  if (progressBar && progressText) {
+    progressBar.style.width = `${progressPercentage}%`;
+    progressText.textContent = `${Math.round(progressPercentage)}%`; // Display rounded percentage
   }
 };
-

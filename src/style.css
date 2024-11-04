@@ -146,11 +146,25 @@ select:focus {
   border-radius: 5px;
   overflow: hidden;
   margin-top: 20px;
+  position: relative; /* Needed for centering text */
 }
 
-
 #progress-bar {
-  width: 400px; /* Celková šírka progress baru */
-  height: 20px; /* Výška progress baru */
-  background-color: rgb(181, 218, 174); /* Farba pozadia */
+  height: 100%; /* Ensure it covers the full container height */
+  background-color: rgb(181, 218, 174); /* Progress bar background color */
+  text-align: center; /* Center text horizontally */
+  position: relative; /* Needed for centering text */
+}
+
+#progress-text {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  color: black; /* Adjust color based on progress bar's background color */
+  display: flex;
+  align-items: center; /* Center text vertically */
+  justify-content: center; /* Center text horizontally */
+  font-weight: bold;
 }
