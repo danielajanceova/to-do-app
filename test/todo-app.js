@@ -39,9 +39,9 @@ test("Clearing completed ToDos", async t => {
 });
 
 
-// Test pre progress bar
+// Test for progress bar reflecting completed tasks correctly
 test("Progress bar reflects completed tasks correctly", async t => {
-    // Pridanie úloh
+    // Add tasks
     await t
         .typeText(Selector("#todo-input"), "Task 1")
         .click(Selector(".todo-form button[type='submit']"))
@@ -57,17 +57,28 @@ test("Progress bar reflects completed tasks correctly", async t => {
         .click(Selector(".todo-form button[type='submit']"))
         .expect(Selector("#todo-list").childElementCount).eql(3);
 
-    // Označenie niektorých úloh ako dokončených
+    // Mark some tasks as completed
     await t
-        .click(Selector("#todo-list .todo-item").withText("Task 1").find(".toggle-checkbox")) // Označ úlohu "Task 1" ako dokončenú
-        .click(Selector("#todo-list .todo-item").withText("Task 2").find(".toggle-checkbox")); // Označ úlohu "Task 2" ako dokončenú
+        .click(Selector("#todo-list .todo-item").withText("Task 1").find(".toggle-checkbox")) // Mark "Task 1" as completed
+        .click(Selector("#todo-list .todo-item").withText("Task 2").find(".toggle-checkbox")); // Mark "Task 2" as completed
 
-    // Očakávané percento dokončených úloh
-    const completedTasks = 2; // Dokončené úlohy
-    const totalTasks = 3; // Celkové úlohy
-    const expectedPercentage = (completedTasks / totalTasks); // Vypočítaj percento
-    const progressBarWidth = 400; // Maximálna šírka progress baru v pixeloch
-    
+    // Expected calculations
+    const completedTasks = 2; // Completed tasks
+    const totalTasks = 3; // Total tasks
+    const expectedPercentage = (completedTasks / totalTasks) * 100; // Calculate percentage
+    const progressBarWidth = 400; // Maximum width of the progress bar in pixels
+    const expectedWidthInPixels = (completedTasks / totalTasks) * progressBarWidth; // Expected width in pixels
+
+    // Verify progress bar width
+    const progressBar = Selector("#progress-bar");
+    await t
+        .expect(progressBar.getStyleProperty("width")).eql(`${expectedWidthInPixels}px`); // Check if progress bar width matches expected value
+
+    // Verify displayed percentage
+    const percentageDisplay = Selector("#percentage-display"); // Update with the actual selector for the percentage display element
+    await t
+        .expect(percentageDisplay.innerText).eql(`${expectedPercentage.toFixed(2)}%`); // Check if displayed percentage matches expected value
 });
+
 
 
