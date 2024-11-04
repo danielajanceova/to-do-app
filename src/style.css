@@ -147,9 +147,10 @@ select:focus {
   overflow: hidden;
   margin-top: 20px;
 }
+
+
 #progress-bar {
-  height: 100%;
-  width: 0;
-  background-color: #4caf50;
-  transition: width 0.3s;
+  width: 400px; /* Celková šírka progress baru */
+  height: 20px; /* Výška progress baru */
+  background-color: #4caf50; /* Farba pozadia */
 }
