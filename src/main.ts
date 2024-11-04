@@ -6,7 +6,7 @@ export interface Todo {
   id: number;
   text: string;
   completed: boolean;
-  priority: 'Low' | 'Medium' | 'High';  // Added priority field
+  priority: 'Low' | 'Medium' | 'High';
 }
 
 // Initialize an empty array to store todos
@@ -16,9 +16,7 @@ export let todos: Todo[] = [];
 const todoInput = document.getElementById('todo-input') as HTMLInputElement;
 const todoForm = document.querySelector('.todo-form') as HTMLFormElement;
 const todoList = document.getElementById('todo-list') as HTMLUListElement;
-const errorMessage = document.getElementById('error-message') as HTMLParagraphElement; // for user input validation
-
-
+const errorMessage = document.getElementById('error-message') as HTMLParagraphElement;
 
 // Step 1: Modify the renderTodos function to add a dropdown to set priority and display priority
 const renderTodos = (): void => {
@@ -34,7 +32,6 @@ const renderTodos = (): void => {
     const li = document.createElement('li');
     li.className = 'todo-item';
 
-    // Apply line-through style if the todo is completed
     li.innerHTML = `
       <div class="todo-item-content">
         <input type="checkbox" class="toggle-checkbox" ${todo.completed ? 'checked' : ''}>
@@ -56,11 +53,10 @@ const renderTodos = (): void => {
       </div>
     `;
 
-    // Add event listeners
-    addCheckboxListener(li, todo.id);     // Add listener for checkbox toggle
-    addPriorityChangeListener(li, todo.id); // Add listener for priority dropdown
-    addRemoveButtonListener(li, todo.id); // Add listener for remove button
-    addEditButtonListener(li, todo.id);   // Add listener for edit button
+    addCheckboxListener(li, todo.id);
+    addPriorityChangeListener(li, todo.id);
+    addRemoveButtonListener(li, todo.id);
+    addEditButtonListener(li, todo.id);
 
     todoList.appendChild(li);
   });
@@ -76,8 +72,8 @@ const addCheckboxListener = (li: HTMLLIElement, id: number): void => {
 const toggleTodoCompletion = (id: number, isCompleted: boolean): void => {
   const todo = todos.find(todo => todo.id === id);
   if (todo) {
-    todo.completed = isCompleted; // Set the completion status based on checkbox
-    renderTodos(); // Re-render the updated list of todos
+    todo.completed = isCompleted;
+    renderTodos();
   }
 };
 
@@ -91,8 +87,8 @@ const addPriorityChangeListener = (li: HTMLLIElement, id: number): void => {
 const updateTodoPriority = (id: number, newPriority: 'Low' | 'Medium' | 'High'): void => {
   const todo = todos.find(todo => todo.id === id);
   if (todo) {
-    todo.priority = newPriority; // Update priority
-    renderTodos(); // Re-render the updated list of todos
+    todo.priority = newPriority;
+    renderTodos();
   }
 };
 
@@ -102,10 +98,10 @@ export const addTodo = (text: string): void => {
     id: Date.now(),
     text: text,
     completed: false,
-    priority: 'Medium', // Default priority
+    priority: 'Medium',
   };
   todos.push(newTodo);
-  renderTodos(); // Re-render the updated list of todos
+  renderTodos();
 };
 
 // Event listener for form submission
@@ -116,8 +112,8 @@ todoForm.addEventListener('submit', (event: Event) => {
   if (text !== '') {
     todoInput.classList.remove('input-error');
     errorMessage.style.display = 'none';
-    addTodo(text); // Add the todo item
-    todoInput.value = ''; // Clear input field
+    addTodo(text);
+    todoInput.value = '';
   } else {
     todoInput.classList.add('input-error');
     errorMessage.style.display = 'block';
@@ -127,7 +123,7 @@ todoForm.addEventListener('submit', (event: Event) => {
 // Step 7: Function to remove a todo item by ID
 export const removeTodo = (id: number): void => {
   todos = todos.filter(todo => todo.id !== id);
-  renderTodos(); // Re-render the updated list of todos
+  renderTodos();
 };
 
 // Step 8: Add event listener for the remove button
@@ -154,8 +150,6 @@ const addEditButtonListener = (li: HTMLLIElement, id: number): void => {
   editButton?.addEventListener('click', () => editTodo(id));
 };
 
-
-
 // Color picker functionality for background color change
 const initializeColorPicker = (): void => {
   const colorPicker = document.getElementById('colorPicker') as HTMLInputElement;
@@ -172,4 +166,11 @@ const initializeColorPicker = (): void => {
 // Initialize color picker on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
+  document.getElementById("clearCompleted")?.addEventListener("click", clearCompletedTodos);
 });
+
+// Step to clear completed todos
+const clearCompletedTodos = (): void => {
+  todos = todos.filter(todo => !todo.completed);
+  renderTodos();
+};
