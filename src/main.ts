@@ -18,9 +18,7 @@ const todoForm = document.querySelector('.todo-form') as HTMLFormElement;
 const todoList = document.getElementById('todo-list') as HTMLUListElement;
 const errorMessage = document.getElementById('error-message') as HTMLParagraphElement; // for user input validation
 
-// Get references to the new buttons for additional functionality
-const clearCompletedBtn = document.getElementById('clear-completed-btn') as HTMLButtonElement;
-const toggleAllBtn = document.getElementById('toggle-all-btn') as HTMLButtonElement;
+
 
 // Step 1: Modify the renderTodos function to add a dropdown to set priority and display priority
 const renderTodos = (): void => {
