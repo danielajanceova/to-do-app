@@ -139,18 +139,3 @@ select:focus {
   --border-color: #3a3a3c;
 }
 
-.progress-container {
-  width: 100%;
-  background-color: #f3f3f3;
-  height: 20px;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-top: 20px;
-}
-
-
-#progress-bar {
-  width: 400px; /* Celková šírka progress baru */
-  height: 20px; /* Výška progress baru */
-  background-color: rgb(181, 218, 174); /* Farba pozadia */
-}
