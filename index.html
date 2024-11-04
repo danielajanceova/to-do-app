@@ -16,15 +16,22 @@
       <!-- error handling message : CSS added:: .input-error & #error-message -->
       <p id="error-message">Please enter a todo item</p>
       <ul class="todo-list" id="todo-list"></ul>
-
+      <div class="button-container">
+        <div class="button-row">
+          <div class="button-cell">
+            <button class="action-button" onclick="clearCompletedTodos()">Clear Completed Todos</button>
+          </div>
+          <div class="button-cell">
+            <button class="action-button" onclick="toggleAllTodos()">Toggle All Todos</button>
+          </div>
+        </div>
+      </div>
       <input type="color" id="colorPicker" />
     </div>
     <script type="module" src="/src/main.ts"></script>
-  </body>
-  <div class="todo-controls">
-    <button id="clear-completed-btn">Clear Completed Todos</button>
-    <button id="toggle-all-btn">Toggle All Todos</button>
-</div>
+
+ 
+  
 
 </html>
 

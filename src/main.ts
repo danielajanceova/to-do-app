@@ -156,24 +156,6 @@ const addEditButtonListener = (li: HTMLLIElement, id: number): void => {
   editButton?.addEventListener('click', () => editTodo(id));
 };
 
-// Step 11: Function to clear all completed todos
-const clearCompletedTodos = (): void => {
-  todos = todos.filter(todo => !todo.completed);
-  renderTodos(); // Re-render the updated list of todos
-};
-
-// Step 12: Add event listener for the "Clear Completed" button
-clearCompletedBtn.addEventListener('click', clearCompletedTodos);
-
-// Step 13: Function to toggle all todos' completion status
-const toggleAllTodos = (): void => {
-  const allCompleted = todos.every(todo => todo.completed);
-  todos.forEach(todo => todo.completed = !allCompleted); // Toggle all to the opposite state
-  renderTodos(); // Re-render the updated list of todos
-};
-
-// Step 14: Add event listener for the "Toggle All" button
-toggleAllBtn.addEventListener('click', toggleAllTodos);
 
 // Initial rendering of todos
 renderTodos();
