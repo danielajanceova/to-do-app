@@ -60,7 +60,7 @@ const renderTodos = (): void => {
 
     todoList.appendChild(li);
   });
-
+  updateProgressBar(); // Update progress bar after clearing completed todos
  
 };
 
@@ -76,6 +76,7 @@ const toggleTodoCompletion = (id: number, isCompleted: boolean): void => {
   if (todo) {
     todo.completed = isCompleted;
     renderTodos();
+    updateProgressBar(); // Update progress bar after clearing completed todos
   
   }
   
@@ -177,7 +178,20 @@ document.addEventListener('DOMContentLoaded', () => {
 const clearCompletedTodos = (): void => {
   todos = todos.filter(todo => !todo.completed);
   renderTodos();
+  updateProgressBar(); // Update progress bar after clearing completed todos
 
   
+};
+
+// Step : Function to update the progress bar
+const updateProgressBar = (): void => {
+  const completedTodos = todos.filter(todo => todo.completed).length;
+  const totalTodos = todos.length;
+  const progressPercentage = totalTodos ? (completedTodos / totalTodos) * 100 : 0;
+
+  const progressBar = document.getElementById("progress-bar") as HTMLElement;
+  if (progressBar) {
+      progressBar.style.width = `${progressPercentage}%`;
+  }
 };
 
