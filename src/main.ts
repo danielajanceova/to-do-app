@@ -154,6 +154,7 @@ const editTodo = (id: number): void => {
 const addEditButtonListener = (li: HTMLLIElement, id: number): void => {
   const editButton = li.querySelector('.edit-btn') as HTMLButtonElement;
   editButton?.addEventListener('click', () => editTodo(id));
+   
 };
 
 
