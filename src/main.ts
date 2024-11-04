@@ -170,14 +170,7 @@ const initializeColorPicker = (): void => {
 // Initialize color picker on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
-  document.getElementById("clearCompleted")?.addEventListener("click", clearCompletedTodos);
+  
 });
 
-// Step to clear completed todos
-const clearCompletedTodos = (): void => {
-  todos = todos.filter(todo => !todo.completed);
-  renderTodos();
-
-  
-};
 
