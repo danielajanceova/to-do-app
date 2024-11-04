@@ -67,10 +67,13 @@ test("Progress bar reflects completed tasks correctly", async t => {
     // Očakávané percento dokončených úloh
     const completedTasks = 2; // Dokončené úlohy
     const totalTasks = 3; // Celkové úlohy
-    const expectedPercentage = (completedTasks / totalTasks) * 100; // Vypočítaj percento
+    const expectedPercentage = (completedTasks / totalTasks); // Vypočítaj percento
+    const progressBarWidth = 400; // Predpokladaná šírka progress baru v pixeloch (nastav na aktuálnu šírku tvojho progress baru)
+    const expectedWidthInPixels = expectedPercentage * progressBarWidth; // Očakávaná šírka v pixeloch
 
     // Overenie šírky progress baru
     const progressBar = Selector("#progress-bar");
     await t
-        .expect(progressBar.getStyleProperty("width")).eql(`${expectedPercentage}%`); // Skontroluj, či sa šírka progress baru zhoduje s očakávanou hodnotou
+        .expect(progressBar.getStyleProperty("width")).eql(`${expectedWidthInPixels}px`); // Skontroluj, či sa šírka progress baru zhoduje s očakávanou hodnotou
 });
+
