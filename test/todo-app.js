@@ -37,3 +37,40 @@ test("Clearing completed ToDos", async t => {
         .click(Selector("#clearCompleted")) // Klikne na Clear Completed
         .expect(Selector("#todo-list .todo-item").withText("Complete task").exists).notOk(); // Overí, že úloha je odstránená
 });
+
+// Test pre progress bar
+test("Progress bar reflects completed tasks correctly", async t => {
+    // Pridanie úloh
+    await t
+        .typeText(Selector("#todo-input"), "Task 1")
+        .click(Selector(".todo-form button[type='submit']"))
+        .expect(Selector("#todo-list").childElementCount).eql(1)
+        .expect(Selector("#todo-list .todo-item").withText("Task 1").exists).ok();
+        
+    await t
+        .typeText(Selector("#todo-input"), "Task 2")
+        .click(Selector(".todo-form button[type='submit']"))
+        .expect(Selector("#todo-list").childElementCount).eql(2)
+        .expect(Selector("#todo-list .todo-item").withText("Task 2").exists).ok();
+        
+    await t
+        .typeText(Selector("#todo-input"), "Task 3")
+        .click(Selector(".todo-form button[type='submit']"))
+        .expect(Selector("#todo-list").childElementCount).eql(3)
+        .expect(Selector("#todo-list .todo-item").withText("Task 3").exists).ok();
+
+    // Označenie niektorých úloh ako dokončených
+    await t
+        .click(Selector("#todo-list .todo-item").withText("Task 1").find(".toggle-checkbox")) // Označ úlohu "Task 1" ako dokončenú
+        .click(Selector("#todo-list .todo-item").withText("Task 2").find(".toggle-checkbox")); // Označ úlohu "Task 2" ako dokončenú
+
+    // Očakávané percento dokončených úloh
+    const completedTasks = 2; // Dokončené úlohy
+    const totalTasks = 3; // Celkové úlohy
+    const expectedPercentage = (completedTasks / totalTasks) * 100; // Vypočítaj percento
+
+    // Overenie šírky progress baru
+    const progressBar = Selector("#progress-bar");
+    await t
+        .expect(progressBar.getStyleProperty("width")).eql(`${expectedPercentage}%`); // Skontroluj, či sa šírka progress baru zhoduje s očakávanou hodnotou
+});
