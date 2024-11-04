@@ -38,10 +38,6 @@ test("Clearing completed ToDos", async t => {
         .expect(Selector("#todo-list .todo-item").withText("Complete task").exists).notOk(); // Overí, že úloha je odstránená
 });
 
-import { Selector } from "testcafe";
-
-fixture("ToDo app tests")
-    .page("http://test.danielajanceova.com/todo/");
 
 // Test pre progress bar
 test("Progress bar reflects completed tasks correctly", async t => {
