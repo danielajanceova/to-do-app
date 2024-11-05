@@ -59,10 +59,10 @@ const renderTodos = (): void => {
     addEditButtonListener(li, todo.id);
 
     todoList.appendChild(li);
+  }); // Closing the forEach loop
 
-  updateProgressBar(); // Update progress bar after clearing completed todos
-
-};
+  updateProgressBar(); // Update progress bar after rendering todos
+}; // Closing renderTodos function
 
 // Step 2: Add event listener for the checkbox to toggle completion status
 const addCheckboxListener = (li: HTMLLIElement, id: number): void => {
@@ -76,12 +76,7 @@ const toggleTodoCompletion = (id: number, isCompleted: boolean): void => {
   if (todo) {
     todo.completed = isCompleted;
     renderTodos();
-
-    updateProgressBar(); // Update progress bar after clearing completed todos
-
-  
   }
-  
 };
 
 // Step 4: Add event listener for the priority dropdown
@@ -173,20 +168,16 @@ const initializeColorPicker = (): void => {
 // Initialize color picker on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
-  
 });
 
-
-// Step to clear completed todos
+// Function to clear completed todos
 const clearCompletedTodos = (): void => {
   todos = todos.filter(todo => !todo.completed);
   renderTodos();
-  updateProgressBar(); // Update progress bar after clearing completed todos
-
-  
+  updateProgressBar();
 };
 
-// Step : Function to update the progress bar
+// Step: Function to update the progress bar
 const updateProgressBar = (): void => {
   const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
@@ -197,6 +188,6 @@ const updateProgressBar = (): void => {
   
   if (progressBar && progressText) {
     progressBar.style.width = `${progressPercentage}%`;
-    progressText.textContent = `${Math.round(progressPercentage)}%`; // Display rounded percentage
+    progressText.textContent = `${Math.round(progressPercentage)}%`;
   }
-};
+}; 
