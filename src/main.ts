@@ -175,6 +175,8 @@ const clearCompletedTodos = (): void => {
   todos = todos.filter(todo => !todo.completed);
   renderTodos();
   updateProgressBar();
+  const clearButton = document.getElementById('clear-completed-btn') as HTMLButtonElement;
+clearButton?.addEventListener('click', clearCompletedTodos);
 };
 
 // Step: Function to update the progress bar
