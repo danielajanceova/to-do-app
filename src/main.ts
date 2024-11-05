@@ -20,7 +20,7 @@ const errorMessage = document.getElementById('error-message') as HTMLParagraphEl
 
 // Step 1: Modify the renderTodos function to add a dropdown to set priority and display priority
 const renderTodos = (): void => {
-  todoList.innerHTML = '';  // Clear the current list
+  todoList.innerHTML = '';  
 
   // Sort todos by priority (High -> Medium -> Low)
   todos.sort((a, b) => {
@@ -59,18 +59,18 @@ const renderTodos = (): void => {
     addEditButtonListener(li, todo.id);
 
     todoList.appendChild(li);
-  }); // Closing the forEach loop
+  }); 
 
   updateProgressBar(); // Update progress bar after rendering todos
-}; // Closing renderTodos function
+}; 
 
-// Step 2: Add event listener for the checkbox to toggle completion status
+// Add event listener for the checkbox to toggle completion status
 const addCheckboxListener = (li: HTMLLIElement, id: number): void => {
   const checkbox = li.querySelector('.toggle-checkbox') as HTMLInputElement;
   checkbox?.addEventListener('change', () => toggleTodoCompletion(id, checkbox.checked));
 };
 
-// Step 3: Create a function to toggle the completed status based on checkbox
+// Create a function to toggle the completed status based on checkbox
 const toggleTodoCompletion = (id: number, isCompleted: boolean): void => {
   const todo = todos.find(todo => todo.id === id);
   if (todo) {
@@ -79,13 +79,13 @@ const toggleTodoCompletion = (id: number, isCompleted: boolean): void => {
   }
 };
 
-// Step 4: Add event listener for the priority dropdown
+// Add event listener for the priority dropdown
 const addPriorityChangeListener = (li: HTMLLIElement, id: number): void => {
   const priorityDropdown = li.querySelector('.priority-dropdown') as HTMLSelectElement;
   priorityDropdown?.addEventListener('change', () => updateTodoPriority(id, priorityDropdown.value as 'Low' | 'Medium' | 'High'));
 };
 
-// Step 5: Function to update priority of a todo item
+// Function to update priority of a todo item
 const updateTodoPriority = (id: number, newPriority: 'Low' | 'Medium' | 'High'): void => {
   const todo = todos.find(todo => todo.id === id);
   if (todo) {
@@ -94,7 +94,7 @@ const updateTodoPriority = (id: number, newPriority: 'Low' | 'Medium' | 'High'):
   }
 };
 
-// Step 6: Add a new todo item with default priority set to 'Medium'
+// Add a new todo item with default priority set to 'Medium'
 export const addTodo = (text: string): void => {
   const newTodo: Todo = {
     id: Date.now(),
@@ -122,19 +122,19 @@ todoForm.addEventListener('submit', (event: Event) => {
   }
 });
 
-// Step 7: Function to remove a todo item by ID
+// Function to remove a todo item by ID
 export const removeTodo = (id: number): void => {
   todos = todos.filter(todo => todo.id !== id);
   renderTodos();
 };
 
-// Step 8: Add event listener for the remove button
+// Add event listener for the remove button
 const addRemoveButtonListener = (li: HTMLLIElement, id: number): void => {
   const removeButton = li.querySelector('.remove-btn') as HTMLButtonElement;
   removeButton?.addEventListener('click', () => removeTodo(id));
 };
 
-// Step 9: Function to edit a todo item
+// Function to edit a todo item
 const editTodo = (id: number): void => {
   const todo = todos.find(todo => todo.id === id);
   if (todo) {
@@ -146,7 +146,7 @@ const editTodo = (id: number): void => {
   }
 };
 
-// Step 10: Add event listener for the edit button
+//  Add event listener for the edit button
 const addEditButtonListener = (li: HTMLLIElement, id: number): void => {
   const editButton = li.querySelector('.edit-btn') as HTMLButtonElement;
   editButton?.addEventListener('click', () => editTodo(id));
@@ -181,7 +181,7 @@ const clearCompletedTodos = (): void => {
 
 };
 
-// Step: Function to update the progress bar
+// Function to update the progress bar
 const updateProgressBar = (): void => {
   const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
