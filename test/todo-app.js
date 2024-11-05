@@ -41,6 +41,9 @@ test("Progress bar reflects completed tasks correctly", async t => {
         .click(Selector("#todo-list .todo-item").withText("Task 1").find(".toggle-checkbox")) 
         .click(Selector("#todo-list .todo-item").withText("Task 2").find(".toggle-checkbox")); 
 
+    // Wait for UI to update
+    await t.wait(100); 
+
     // Assert: Check the progress bar width
     const completedTasks = 2; // Number of completed tasks
     const totalTasks = 3; // Total number of tasks
@@ -49,6 +52,10 @@ test("Progress bar reflects completed tasks correctly", async t => {
 
     const progressBar = Selector("#progress-bar"); // Select the progress bar
     const actualWidth = await progressBar.clientWidth; // Get the actual width of the progress bar
+
+    // Log the actual width for debugging
+    console.log("Actual Width:", actualWidth);
+    console.log("Expected Width:", expectedWidthInPixels);
 
     // Check if the actual width matches the expected width
     await t.expect(actualWidth).eql(expectedWidthInPixels, "The progress bar width is not correct.");
