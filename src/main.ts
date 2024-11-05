@@ -168,6 +168,8 @@ const initializeColorPicker = (): void => {
 // Initialize color picker on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   initializeColorPicker();
+  const clearButton = document.getElementById('clearCompleted') as HTMLButtonElement;
+  clearButton?.addEventListener('click', clearCompletedTodos);
 });
 
 // Function to clear completed todos
@@ -175,8 +177,7 @@ const clearCompletedTodos = (): void => {
   todos = todos.filter(todo => !todo.completed);
   renderTodos();
   updateProgressBar();
-  const clearButton = document.getElementById('clearCompleted') as HTMLButtonElement;
-clearButton?.addEventListener('click', clearCompletedTodos);
+
 
 };
 
