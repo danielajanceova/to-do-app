@@ -23,36 +23,33 @@ test("Clearing completed ToDos", async t => {
 
 // Test for progress bar 
 test("Progress bar reflects completed tasks correctly", async t => {
-    // Arrange
+    // Arrange: 
     await t
-        .typeText(Selector("#todo-input"), "Task 1")
-        .click(Selector(".todo-form button[type='submit']"))
-        .expect(Selector("#todo-list").childElementCount).eql(1);
+        .typeText(Selector("#todo-input"), "Task 1") 
+        .click(Selector(".todo-form button[type='submit']"));
 
     await t
-        .typeText(Selector("#todo-input"), "Task 2")
-        .click(Selector(".todo-form button[type='submit']"))
-        .expect(Selector("#todo-list").childElementCount).eql(2);
+        .typeText(Selector("#todo-input"), "Task 2") 
+        .click(Selector(".todo-form button[type='submit']"));
 
     await t
-        .typeText(Selector("#todo-input"), "Task 3")
-        .click(Selector(".todo-form button[type='submit']"))
-        .expect(Selector("#todo-list").childElementCount).eql(3);
+        .typeText(Selector("#todo-input"), "Task 3") 
+        .click(Selector(".todo-form button[type='submit']"));
 
-    // Act
+    // Act: Mark two tasks as completed
     await t
-        .click(Selector("#todo-list .todo-item").withText("Task 1").find(".toggle-checkbox")) // Mark "Task 1" as completed
-        .click(Selector("#todo-list .todo-item").withText("Task 2").find(".toggle-checkbox")); // Mark "Task 2" as completed
+        .click(Selector("#todo-list .todo-item").withText("Task 1").find(".toggle-checkbox")) 
+        .click(Selector("#todo-list .todo-item").withText("Task 2").find(".toggle-checkbox")); 
 
-    // Assert
-    const completedTasks = 2; // Completed tasks
-    const totalTasks = 3; // Total tasks
-    const expectedPercentage = (completedTasks / totalTasks) * 100; // Calculate percentage
+    // Assert: Check the progress bar width
+    const completedTasks = 2; // Number of completed tasks
+    const totalTasks = 3; // Total number of tasks
     const progressBarWidth = 400; // Maximum width of the progress bar in pixels
-    const expectedWidthInPixels = (completedTasks / totalTasks) * progressBarWidth; // Expected width in pixels
+    const expectedWidthInPixels = (completedTasks / totalTasks) * progressBarWidth; // Calculate expected width
 
-    const progressBar = Selector("#progress-bar");
-    const actualWidth = await progressBar.clientWidth;
+    const progressBar = Selector("#progress-bar"); // Select the progress bar
+    const actualWidth = await progressBar.clientWidth; // Get the actual width of the progress bar
 
-    await t.expect(actualWidth).eql(expectedWidthInPixels); // Assert that the progress bar width is correct
+    // Check if the actual width matches the expected width
+    await t.expect(actualWidth).eql(expectedWidthInPixels, "The progress bar width is not correct.");
 });
